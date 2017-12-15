@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.25 on 2017-12-14.
+ * Generated for Laravel 5.5.25 on 2017-12-15.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1648,7 +1648,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the currently authenticated user.
          *
-         * @return \Gelados\Models\User|null 
+         * @return \Gelladus\Models\User|null 
          * @static 
          */ 
         public static function user()
@@ -1683,7 +1683,7 @@ namespace Illuminate\Support\Facades {
          * Log the given user ID into the application without sessions or cookies.
          *
          * @param mixed $id
-         * @return \Gelados\Models\User|false 
+         * @return \Gelladus\Models\User|false 
          * @static 
          */ 
         public static function onceUsingId($id)
@@ -1747,7 +1747,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \Gelados\Models\User|false 
+         * @return \Gelladus\Models\User|false 
          * @static 
          */ 
         public static function loginUsingId($id, $remember = false)
@@ -1794,7 +1794,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \Gelados\Models\User 
+         * @return \Gelladus\Models\User 
          * @static 
          */ 
         public static function getLastAttempted()
@@ -1896,7 +1896,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Return the currently cached user.
          *
-         * @return \Gelados\Models\User|null 
+         * @return \Gelladus\Models\User|null 
          * @static 
          */ 
         public static function getUser()
@@ -1942,7 +1942,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if the current user is authenticated.
          *
-         * @return \Gelados\Models\User 
+         * @return \Gelladus\Models\User 
          * @throws \Illuminate\Auth\AuthenticationException
          * @static 
          */ 
