@@ -18,6 +18,9 @@ class CreatePedidosTable extends Migration
             $table->enum('status', [1, 2])->default(1);
             $table->float('valor', 8, 2)->default(0);
             $table->float('desconto', 8, 2)->default(0);
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

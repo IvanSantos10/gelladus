@@ -176,6 +176,7 @@ return [
         // Gelladus\Providers\BroadcastServiceProvider::class,
         Gelladus\Providers\EventServiceProvider::class,
         Gelladus\Providers\RouteServiceProvider::class,
+        Gelladus\Providers\RepositoryServiceProvider::class,
 
     ],
 

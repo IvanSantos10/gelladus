@@ -11,6 +11,6 @@
     <ul class="list-unstyled">
         <li class="active"> <a href="./"><i class="icon-home"></i>Home</a></li>
         <li class="active"> <a href="./"><i class="icon-home"></i>Usuários</a></li>
-        <li class="active"> <a href="./"><i class="icon-home"></i>Produtos</a></li>
+        <li class="active"> <a href="{{ route('produtos.index') }}"><i class="icon-home"></i>Produtos</a></li>
     </ul>
 </nav>
