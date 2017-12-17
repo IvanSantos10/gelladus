@@ -17,9 +17,20 @@ class Produto extends Model implements Transformable
         'preco'
     ];
 
-    public function pedidos()
+    protected $casts = [
+        'preco' => 'float',
+    ];
+
+    public function estoques()
     {
-        return $this->belongsToMany(Pedido::class, 'itens_pedidos', 'produto_id', 'pedido_id');
+        return $this->hasMany(Estoque::class);
     }
+
+    public function getPrecoFormartAttribute()
+    {
+        return "R$ ". number_format($this->preco,2, ',', '.');
+    }
+
+
 
 }

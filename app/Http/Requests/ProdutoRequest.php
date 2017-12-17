@@ -4,7 +4,7 @@ namespace Gelladus\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProdutoUpdateRequest extends FormRequest
+class ProdutoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ProdutoUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class ProdutoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nome' => "required",
+            'preco' => "required|numeric",
         ];
     }
 }

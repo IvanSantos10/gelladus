@@ -4,19 +4,22 @@ namespace Gelladus\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Gelladus\Models\Produto;
+use Gelladus\Models\Estoque;
+
 /**
  * Class ProdutoRepositoryEloquent
  * @package namespace Gelladus\Repositories;
  */
-class ProdutoRepositoryEloquent extends BaseRepository implements ProdutoRepository
+class EstoqueRepositoryEloquent extends BaseRepository implements EstoqueRepository
 {
 
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'nome'=>'like'
+        'lote',
+        'quantidade',
+        'produto.nome',
     ];
     /**
      * Specify Model class name
@@ -25,7 +28,7 @@ class ProdutoRepositoryEloquent extends BaseRepository implements ProdutoReposit
      */
     public function model()
     {
-        return Produto::class;
+        return Estoque::class;
     }
 
     

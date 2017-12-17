@@ -23,7 +23,18 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(\Gelladus\Repositories\ProdutoRepository::class, \Gelladus\Repositories\ProdutoRepositoryEloquent::class);
+        $models = [
+            'Produto',
+            'Estoque'
+        ];
+
+        foreach ($models as $model){
+            $this->app->bind(
+                "Gelladus\Repositories\\{$model}Repository",
+                "Gelladus\Repositories\\{$model}RepositoryEloquent"
+            );
+        }
+
         //:end-bindings:
     }
 }

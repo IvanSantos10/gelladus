@@ -3,16 +3,11 @@
 namespace Gelladus\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Gelladus\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
-use Gelladus\Http\Requests\ProdutoCreateRequest;
-use Gelladus\Http\Requests\ProdutoUpdateRequest;
+use Gelladus\Http\Requests\ProdutoRequest;
 use Gelladus\Repositories\ProdutoRepository;
 
 
-class ProdutosController extends Controller
+class ProdutoController extends Controller
 {
 
     /**
@@ -53,11 +48,11 @@ class ProdutosController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ProdutoCreateRequest $request
+     * @param  ProdutoRequest $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ProdutoCreateRequest $request)
+    public function store(ProdutoRequest $request)
     {
         $this->repository->create($request->all());
 
@@ -104,7 +99,7 @@ class ProdutosController extends Controller
      *
      * @return Response
      */
-    public function update(ProdutoUpdateRequest $request, $id)
+    public function update(ProdutoRequest $request, $id)
     {
         $this->repository->update($request->all(), $id);
 

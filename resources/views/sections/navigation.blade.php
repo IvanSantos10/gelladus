@@ -9,8 +9,9 @@
     </div>
     <!-- Sidebar Navidation Menus--><span class="heading">Menu</span>
     <ul class="list-unstyled">
-        <li class="active"> <a href="./"><i class="icon-home"></i>Home</a></li>
-        <li class="active"> <a href="./"><i class="icon-home"></i>Usuários</a></li>
-        <li class="active"> <a href="{{ route('produtos.index') }}"><i class="icon-home"></i>Produtos</a></li>
+        <li class="active"> <a href="/home"><i class="icon-home"></i>Home</a></li>
+        <li class="active"> <a href="./"><i class="icon-user"></i>Usuários</a></li>
+        <li class="active"> <a href="{{ route('produtos.index') }}"><i class="icon-grid"></i>Produtos</a></li>
+        <li class="active"> <a href="{{ route('estoques.index') }}"><i class="icon-grid"></i>Estoque</a></li>
     </ul>
 </nav>
