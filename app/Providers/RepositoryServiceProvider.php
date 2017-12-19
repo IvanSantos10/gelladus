@@ -25,7 +25,9 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $models = [
             'Produto',
-            'Estoque'
+            'Estoque',
+            'Pedido',
+            'User',
         ];
 
         foreach ($models as $model){

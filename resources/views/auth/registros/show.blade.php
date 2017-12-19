@@ -1,7 +1,5 @@
 @extends('layouts.corpo')
 
-@section('title', 'Lista de produtos')
-
 @section('contents')
     <!-- Breadcrumb-->
     <ul class="breadcrumb">
@@ -10,15 +8,12 @@
             <li class="breadcrumb-item active">Produtos</li>
         </div>
     </ul>
-
-    @include('sections.message')
-
     <section class="tables">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-close oculte">
+                        <div class="card-close">
                             {!! Form::model(compact('search'), ['class'=>'form-inline', 'method'=> 'GET'])!!}
                             {!! Form::label('search', 'Pesquisar', ['class' => 'control-label']) !!}
                             {!! Form::text('search', null, ['class' => 'form-control']) !!}
@@ -33,6 +28,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>First Name</th>
                                     <th>Nome</th>
                                     <th>Preço</th>
                                 </tr>
@@ -40,24 +36,26 @@
                                 <tbody>
                                 @foreach($produtos as $produto)
                                     <tr>
-                                        <td>{{ $produto->id}}</td>
-                                        <td >{{ $produto->nome}}</td>
-                                        <td>{{ $produto->preco_formart}}</td>
-                                        <td>
-                                            <a class='btn btn-warning'
-                                               href="{{ route('produtos.edit', ['produto' => $produto->id]) }}">Editar</a>
-                                            <a class="btn btn-danger"
-                                               href="{{ route('produtos.destroy',['produto' => $produto->id]) }}"
-                                               onclick="event.preventDefault();if(confirm('Deseja excluir este item?')){document.getElementById('form-delete').submit();}">Excluir</a>
-                                            {{Form::open(['route' => ['produtos.destroy',$produto->id],'method' => 'DELETE', 'id' => 'form-delete'])}}
-                                            {{Form::close()}}
-
+                                        <td class="col-md-1">{{ $produto->nome}}</td>
+                                        <td class="col-md-2">{{ $produto->preco}}</td>
+                                        <td class="col-md-2 hidden-print">
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <a class='btn btn-warning'
+                                                       href="{{ route('produtos.edit', ['produto' => $produto->id]) }}"><span
+                                                                class='glyphicon glyphicon-edit'></span></a>
+                                                </li>
+                                                <li>
+                                                    <a class='btn btn-danger'
+                                                       href="{{ route('produtos.show', ['produto' => $produto->id]) }}"><span
+                                                                class='glyphicon glyphicon-trash'></span></a>
+                                                </li>
+                                            </ul>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{ $produtos->links() }}
                         </div>
                     </div>
                 </div>

@@ -1,13 +1,13 @@
 @extends('layouts.corpo')
 
-@section('title', 'Lista de produtos')
+@section('title', 'Lista de pedidos aberto')
 
 @section('contents')
     <!-- Breadcrumb-->
     <ul class="breadcrumb">
         <div class="container-fluid">
             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-            <li class="breadcrumb-item active">Produtos</li>
+            <li class="breadcrumb-item active">Pedidos aberto</li>
         </div>
     </ul>
 
@@ -26,38 +26,44 @@
                             {!! Form::close()!!}
                         </div>
                         <div class="card-header d-flex align-items-center">
-                            <a class="btn btn-primary" href="{{route('produtos.create')}}">Novo produto</a>
+                            <a class="btn btn-primary" href="{{route('pedidos.create')}}">Novo pedido</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nome</th>
-                                    <th>Preço</th>
+                                    <th>Iten</th>
+                                    <th>Qnt total</th>
+                                    <th>Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($produtos as $produto)
+                                @foreach($pedidos as $pedido)
+                                    @php
+                                        $deleteForm = "form-delete-{$pedido->id}";
+                                    @endphp
                                     <tr>
-                                        <td>{{ $produto->id}}</td>
-                                        <td >{{ $produto->nome}}</td>
-                                        <td>{{ $produto->preco_formart}}</td>
+                                        <td>{{ $pedido->id}}</td>
+                                        <td>{{ $pedido->produtos()->count('id')}}</td>
+                                        <td>{{ $pedido->produtos()->sum('quantidade')}}</td>
+                                        <td >{{ $pedido->total}}</td>
                                         <td>
+                                            <a class='btn btn-success'
+                                               href="{{ route('pedidos.show', ['pedido' => $pedido->id]) }}">Visualizar</a>
                                             <a class='btn btn-warning'
-                                               href="{{ route('produtos.edit', ['produto' => $produto->id]) }}">Editar</a>
+                                               href="{{ route('pedidos.edit', ['pedido' => $pedido->id]) }}">Editar</a>
                                             <a class="btn btn-danger"
-                                               href="{{ route('produtos.destroy',['produto' => $produto->id]) }}"
-                                               onclick="event.preventDefault();if(confirm('Deseja excluir este item?')){document.getElementById('form-delete').submit();}">Excluir</a>
-                                            {{Form::open(['route' => ['produtos.destroy',$produto->id],'method' => 'DELETE', 'id' => 'form-delete'])}}
+                                               href="{{ route('pedidos.destroy',['pedido' => $pedido->id]) }}"
+                                               onclick="event.preventDefault();if(confirm('Deseja excluir este item?')){document.getElementById('{{$deleteForm}}').submit();}">Excluir</a>
+                                            {{Form::open(['route' => ['pedidos.destroy',$pedido->id],'method' => 'DELETE', 'id' => $deleteForm])}}
                                             {{Form::close()}}
-
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{ $produtos->links() }}
+                            {{ $pedidos->links() }}
                         </div>
                     </div>
                 </div>

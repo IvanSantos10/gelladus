@@ -1,13 +1,13 @@
 @extends('layouts.corpo')
 
-@section('title', 'Lista de produtos')
+@section('title', 'Lista de Usuários')
 
 @section('contents')
     <!-- Breadcrumb-->
     <ul class="breadcrumb">
         <div class="container-fluid">
             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-            <li class="breadcrumb-item active">Produtos</li>
+            <li class="breadcrumb-item active">Usuários</li>
         </div>
     </ul>
 
@@ -26,7 +26,7 @@
                             {!! Form::close()!!}
                         </div>
                         <div class="card-header d-flex align-items-center">
-                            <a class="btn btn-primary" href="{{route('produtos.create')}}">Novo produto</a>
+                            <a class="btn btn-primary" href="{{route('registros.create')}}">Novo usuário</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped table-hover">
@@ -34,22 +34,27 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nome</th>
-                                    <th>Preço</th>
+                                    <th>E-mail</th>
+                                    <th>Função</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($produtos as $produto)
+                                @foreach($users as $user)
                                     <tr>
-                                        <td>{{ $produto->id}}</td>
-                                        <td >{{ $produto->nome}}</td>
-                                        <td>{{ $produto->preco_formart}}</td>
+                                        <td>{{ $user->id}}</td>
+                                        <td>{{ $user->name}}</td>
+                                        <td >{{ $user->email}}</td>
+                                        <td>{{ $user->role}}</td>
                                         <td>
                                             <a class='btn btn-warning'
-                                               href="{{ route('produtos.edit', ['produto' => $produto->id]) }}">Editar</a>
-                                            <a class="btn btn-danger"
-                                               href="{{ route('produtos.destroy',['produto' => $produto->id]) }}"
-                                               onclick="event.preventDefault();if(confirm('Deseja excluir este item?')){document.getElementById('form-delete').submit();}">Excluir</a>
-                                            {{Form::open(['route' => ['produtos.destroy',$produto->id],'method' => 'DELETE', 'id' => 'form-delete'])}}
+                                               href="{{ route('registros.edit', ['user' => $user->id]) }}">Editar</a>
+                                            <a class="btn btn-danger"  href="#"
+                                               {{--href="{{ route('registros.destroy',['user' => $user->id]) }}"--}}
+{{--
+                                               onclick="event.preventDefault();if(confirm('Deseja excluir?')){document.getElementById('form-delete').submit();}
+--}}
+">Excluir</a>
+                                            {{Form::open(['route' => ['registros.destroy',$user->id],'method' => 'DELETE', 'id' => 'form-delete'])}}
                                             {{Form::close()}}
 
                                         </td>
@@ -57,7 +62,6 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{ $produtos->links() }}
                         </div>
                     </div>
                 </div>

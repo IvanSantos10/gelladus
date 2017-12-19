@@ -26,11 +26,14 @@ class Produto extends Model implements Transformable
         return $this->hasMany(Estoque::class);
     }
 
-    public function getPrecoFormartAttribute()
+    public function pedidos()
     {
-        return "R$ ". number_format($this->preco,2, ',', '.');
+        return $this->hasMany(PedidoProduto::class, 'produto_id', 'id');
     }
 
-
+    public function getPrecoFormartAttribute()
+    {
+        return "R$ " . number_format($this->preco, 2, ',', '.');
+    }
 
 }

@@ -45,37 +45,6 @@ LOCK TABLES `estoques` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `itens_pedido`
---
-
-DROP TABLE IF EXISTS `itens_pedido`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `itens_pedido` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `pedido_id` int(10) unsigned NOT NULL,
-  `produto_id` int(10) unsigned NOT NULL,
-  `quantidade` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `itens_pedido_pedido_id_foreign` (`pedido_id`),
-  KEY `itens_pedido_produto_id_foreign` (`produto_id`),
-  CONSTRAINT `itens_pedido_pedido_id_foreign` FOREIGN KEY (`pedido_id`) REFERENCES `pedidos` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `itens_pedido_produto_id_foreign` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `itens_pedido`
---
-
-LOCK TABLES `itens_pedido` WRITE;
-/*!40000 ALTER TABLE `itens_pedido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `itens_pedido` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `migrations`
 --
 
@@ -96,7 +65,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2017_12_14_202603_create_user_admin_data',1),(4,'2017_12_15_154601_create_produtos_table',1),(5,'2017_12_15_155913_create_estoques_table',1),(6,'2017_12_15_164147_create_pedidos_table',1),(7,'2017_12_15_164231_create_itens_pedidos_table',1);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2017_12_14_202603_create_user_admin_data',1),(4,'2017_12_15_154601_create_produtos_table',1),(5,'2017_12_15_155913_create_estoques_table',1),(6,'2017_12_15_164147_create_pedidos_table',1),(7,'2017_12_15_164231_create_pedido_produtos_table',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,6 +91,38 @@ CREATE TABLE `password_resets` (
 LOCK TABLES `password_resets` WRITE;
 /*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pedido_produtos`
+--
+
+DROP TABLE IF EXISTS `pedido_produtos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pedido_produtos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `preco` double(8,2) NOT NULL DEFAULT '0.00',
+  `quantidade` double(8,2) NOT NULL DEFAULT '0.00',
+  `pedido_id` int(10) unsigned NOT NULL,
+  `produto_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pedido_produtos_pedido_id_foreign` (`pedido_id`),
+  KEY `pedido_produtos_produto_id_foreign` (`produto_id`),
+  CONSTRAINT `pedido_produtos_pedido_id_foreign` FOREIGN KEY (`pedido_id`) REFERENCES `pedidos` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `pedido_produtos_produto_id_foreign` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pedido_produtos`
+--
+
+LOCK TABLES `pedido_produtos` WRITE;
+/*!40000 ALTER TABLE `pedido_produtos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pedido_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -193,6 +194,7 @@ CREATE TABLE `users` (
   `email` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `role` smallint(6) NOT NULL,
+  `telefone` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -207,7 +209,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Adminstrator','admin@gelladus.com','$2y$10$XJsSkqKsZXeCAFs6evPBY.n/WDiNd/5dxPVlvxdiE3oJ7lZqDQ0lW',1,NULL,'2017-12-16 13:18:09','2017-12-16 13:18:09');
+INSERT INTO `users` VALUES (1,'Adminstrator','admin@gelladus.com','$2y$10$lqYd75WF0KYdFm2wt5eliemRlpDn6x20NKsy.8HrosKHyUjJe0iZi',1,NULL,NULL,'2017-12-19 13:53:27','2017-12-19 13:53:27');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -220,4 +222,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-16 10:19:03
+-- Dump completed on 2017-12-19 10:53:42

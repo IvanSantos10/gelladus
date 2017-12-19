@@ -35,14 +35,17 @@ class EstoqueController extends Controller
     {
         $search = $request->get('search');
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $estoques = $this->repository->with('produto')->paginate(10);
+        $estoques = $this->repository->scopeQuery(function ($query) {
+            return $query->join('produtos', 'estoques.produto_id', '=', 'produtos.id')
+                ->orderBy('produtos.nome', 'asc');
+        })->paginate(10);
 
         return view('estoques.index', compact('estoques', 'search'));
     }
 
     public function create()
     {
-        $produtos = $this->produtoRepository->pluck('nome','id');
+        $produtos = $this->produtoRepository->pluck('nome', 'id');
 
         return view('estoques.create', compact('produtos'));
     }
@@ -88,7 +91,7 @@ class EstoqueController extends Controller
     {
 
         $estoque = $this->repository->find($id);
-        $produtos = $this->produtoRepository->pluck('nome','id');
+        $produtos = $this->produtoRepository->pluck('nome', 'id');
 
         return view('estoques.edit', compact('estoque', 'produtos'));
     }

@@ -34,9 +34,11 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-8 col-md-offset-4">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary" style="margin-right: 8%;">
                                                 Login
                                             </button>
+                                            <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            <label for="remember" class="label-material">Lembra me</label>
                                         </div>
                                     </div>
                                 </form><a href="{{ route('password.request') }} class="forgot-pass">Esqueceu sua senha?</a>

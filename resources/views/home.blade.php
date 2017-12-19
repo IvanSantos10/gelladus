@@ -3,17 +3,12 @@
 @section('title', 'Home')
 
 @section('contents')
-    <!-- Breadcrumb-->
-    <ul class="breadcrumb">
-        <div class="container-fluid">
-            <li class="breadcrumb-item"><a href="/home">Home</a></li>
-            <li class="breadcrumb-item active">Tables</li>
-        </div>
-    </ul>
     <section class="dashboard-counts no-padding-bottom">
-        <div class="container-fluid">
+        <div class="container-fluid" style="margin-bottom: 50%">
             <div class="row">
                 {{ config('app.name') }}
+                <br><br><br>
+                @include('sections.message')
             </div>
         </div>
     </section>

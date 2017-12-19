@@ -20,4 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('produtos', 'ProdutoController');
+Route::resource('registros', 'Auth\RegistroController');
 Route::resource('estoques', 'EstoqueController');
+Route::get('pedidos/fechado', 'PedidoController@fechado')->name('pedidos.fechado');
+Route::resource('pedidos', 'PedidoController');
+Route::get('pedidos/{pedido}/finalizado', 'PedidoController@finalizar')->name('pedido.finalizado');

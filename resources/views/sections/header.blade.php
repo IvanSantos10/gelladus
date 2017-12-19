@@ -4,7 +4,7 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
                 <!-- Navbar Header-->
                 <div class="navbar-header">
-                    <!-- Navbar Brand --><a href="{{ url('/') }}" class="navbar-brand">
+                    <!-- Navbar Brand --><a href="{{ url('/home') }}" class="navbar-brand">
                         <div class="brand-text brand-big hidden-lg-down">
                             <strong>{{ config('app.name', 'Laravel') }}</strong>
                         </div>
